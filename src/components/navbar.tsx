@@ -11,10 +11,10 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 inset-x-0 h-24 bg-background/80 backdrop-blur-md z-50 border-b border-border/40">
-        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+      <nav className="fixed top-0 inset-x-0 h-16 sm:h-24 bg-background/80 backdrop-blur-md z-50 border-b border-border/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 cursor-pointer">
-            <span className="text-3xl title text-primary">Casa do Bolo</span>
+            <span className="text-xl sm:text-3xl title text-primary">Casa do Bolo</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-10 text-[15px] font-medium tracking-wide text-muted-foreground">

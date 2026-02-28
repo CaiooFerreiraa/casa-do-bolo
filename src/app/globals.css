@@ -122,3 +122,11 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 }
+
+@utility hide-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

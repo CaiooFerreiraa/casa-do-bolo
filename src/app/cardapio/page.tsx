@@ -24,7 +24,7 @@ export default function CardapioPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero Banner */}
-      <section className="relative h-72 md:h-96 overflow-hidden">
+      <section className="relative h-48 sm:h-72 md:h-96 overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1607478900766-efe13248b125?q=80&w=1600&auto=format&fit=crop"
           alt="Mesa de bolos artesanais"
@@ -33,29 +33,29 @@ export default function CardapioPage() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-background" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pt-24">
-          <h1 className="text-5xl md:text-6xl title text-white drop-shadow-lg mb-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pt-16 sm:pt-24">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl title text-white drop-shadow-lg mb-2 sm:mb-4">
             Nosso Cardápio
           </h1>
-          <p className="text-white/80 text-lg font-light max-w-md">
+          <p className="text-white/80 text-sm sm:text-lg font-light max-w-md">
             Cada bolo é uma obra feita com amor e ingredientes selecionados.
           </p>
         </div>
       </section>
 
       {/* Filters */}
-      <section className="sticky top-24 z-40 bg-background/95 backdrop-blur-md border-b border-border/50 py-5 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <section className="sticky top-16 sm:top-24 z-40 bg-background/95 backdrop-blur-md border-b border-border/50 py-3 sm:py-5 px-4 sm:px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-4 md:gap-4 items-center justify-between">
           {/* Categories */}
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-3 overflow-x-auto w-full md:w-auto pt-1 pb-2 hide-scrollbar flex-nowrap scroll-smooth px-1">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
                 id={`category-${cat.id}`}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all cursor-pointer ${activeCategory === cat.id
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "bg-muted text-muted-foreground hover:bg-muted/70"
+                className={`px-5 py-2 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer flex-shrink-0 border ${activeCategory === cat.id
+                  ? "bg-primary text-primary-foreground border-transparent shadow-md scale-105"
+                  : "bg-muted text-muted-foreground border-transparent hover:bg-muted/70"
                   }`}
               >
                 {cat.label}
@@ -64,15 +64,15 @@ export default function CardapioPage() {
           </div>
 
           {/* Search */}
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <div className="relative w-full md:w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
             <input
               type="text"
               id="search-product"
               placeholder="Buscar bolo..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-muted rounded-full text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+              className="w-full pl-9 pr-4 py-2 sm:py-2.5 bg-muted rounded-full text-xs sm:text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all border border-border/40"
             />
           </div>
         </div>

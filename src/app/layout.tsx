@@ -17,6 +17,14 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Casa do Bolo | Sua doceria online",
   description: "Bolos caseiros feitos com muito amor e carinho.",
+  icons: {
+    icon: [
+      { url: "/favicon.png" },
+      { url: "/favicon.png", type: "image/png" }
+    ],
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

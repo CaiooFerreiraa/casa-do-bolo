@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { ShoppingBag, Menu, X, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 export function Navbar() {
@@ -50,13 +50,16 @@ export function Navbar() {
 
       {/* Global Cart Toast */}
       {toast && (
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] bg-secondary text-secondary-foreground px-6 py-4 rounded-2xl shadow-2xl font-medium animate-in slide-in-from-bottom-5 fade-in duration-300 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-            <ShoppingBag className="w-4 h-4" />
+        <div className="fixed bottom-6 left-6 right-6 sm:left-auto sm:right-6 sm:w-[320px] z-[200] bg-[#2D2723] text-[#F5F1EE] px-5 py-4 rounded-2xl shadow-2xl border border-[#4E4038] animate-in slide-in-from-bottom-5 fade-in duration-300 flex items-start gap-4 mx-auto sm:mx-0">
+          <div className="w-10 h-10 rounded-full bg-[#D7A684] flex-shrink-0 flex items-center justify-center shadow-lg">
+            <ShoppingBag className="w-5 h-5 text-[#2D2723]" />
           </div>
-          <span>{toast}</span>
-          <button onClick={clearToast} className="ml-2 opacity-50 hover:opacity-100 transition-opacity">
-            <X className="w-4 h-4" />
+          <div className="flex-1 pt-0.5">
+            <p className="text-sm font-bold leading-tight">{toast}</p>
+            <p className="text-[10px] opacity-40 uppercase tracking-widest mt-1">Carrinho atualizado</p>
+          </div>
+          <button onClick={clearToast} className="p-1 hover:bg-white/5 rounded-lg transition-colors flex-shrink-0">
+            <X className="w-4 h-4 opacity-40 hover:opacity-100" />
           </button>
         </div>
       )}
@@ -85,7 +88,7 @@ export function Navbar() {
               <X className="w-6 h-6 text-foreground" />
             </button>
           </div>
-          <nav className="flex flex-col gap-6">
+          <nav className="flex flex-col gap-4">
             {[
               { href: "/", label: "Início" },
               { href: "/cardapio", label: "Cardápio" },
@@ -94,10 +97,11 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-4xl title text-foreground hover:text-primary transition-colors flex items-center justify-between"
+                className="text-2xl title text-foreground hover:text-primary transition-all flex items-center justify-between p-4 rounded-2xl hover:bg-primary/5 active:scale-[0.98]"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
+                <ChevronRight className="w-5 h-5 text-primary opacity-40" />
               </Link>
             ))}
           </nav>

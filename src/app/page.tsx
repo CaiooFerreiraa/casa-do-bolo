@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Star, ChevronRight, Lock } from "lucide-react";
+import { Star, ChevronRight, Lock, ShoppingBag, Utensils } from "lucide-react";
 import { useAdmin } from "@/lib/admin-context";
 import { ProductCard } from "@/components/product-card";
 
@@ -35,15 +35,16 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
               <Link
                 href="/cardapio"
-                className="bg-primary text-primary-foreground px-6 py-4 sm:px-10 sm:py-5 rounded-full font-medium tracking-wide hover:bg-primary/90 transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-xl shadow-primary/20 text-base sm:text-lg"
+                className="bg-primary text-primary-foreground px-6 py-3.5 sm:px-8 sm:py-4 rounded-full font-bold tracking-tight hover:bg-primary/90 transition-all active:scale-95 flex items-center justify-center gap-3 cursor-pointer shadow-xl shadow-primary/20 text-sm sm:text-base"
               >
+                <Utensils className="w-4 h-4 sm:w-5 sm:h-5" />
                 Ver Cardápio
-                <ChevronRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/carrinho"
-                className="px-6 py-4 sm:px-8 sm:py-5 rounded-full font-medium tracking-wide text-foreground hover:bg-muted/50 transition-colors cursor-pointer text-base sm:text-lg text-center"
+                className="px-6 py-3.5 sm:px-8 sm:py-4 rounded-full font-bold tracking-tight text-foreground hover:bg-muted/50 transition-colors cursor-pointer text-sm sm:text-base text-center border-2 border-border/20 flex items-center justify-center gap-3"
               >
+                <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 Meu Carrinho
               </Link>
             </div>

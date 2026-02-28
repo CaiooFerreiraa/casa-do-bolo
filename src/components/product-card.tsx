@@ -37,24 +37,24 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Quick Add Button */}
-        <div className="absolute bottom-5 left-5 right-5 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+        <div className="absolute bottom-4 left-4 right-4 translate-y-2 opacity-100 lg:translate-y-8 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 transition-all duration-500 ease-out z-20">
           <button
             id={`add-to-cart-${product.id}`}
             onClick={handleAdd}
-            className={`w-full backdrop-blur-md py-4 rounded-2xl font-medium shadow-xl transition-all active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 ${added
-                ? "bg-primary text-primary-foreground"
-                : "bg-background/95 text-foreground hover:bg-background"
+            className={`w-full backdrop-blur-md py-3 rounded-xl font-bold text-sm shadow-xl transition-all active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 border border-white/10 ${added
+              ? "bg-primary text-primary-foreground border-transparent"
+              : "bg-background/90 text-foreground hover:bg-background"
               }`}
           >
             {added ? (
               <>
                 <Check className="w-4 h-4" />
-                Adicionado!
+                No Carrinho!
               </>
             ) : (
               <>
                 <ShoppingBag className="w-4 h-4" />
-                Adicionar ao Carrinho
+                Adicionar
               </>
             )}
           </button>

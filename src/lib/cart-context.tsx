@@ -25,25 +25,35 @@ interface CartContextType {
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  toast: string | null;
+  clearToast: () => void;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [toast, setToast] = useState<string | null>(null);
+
+  const clearToast = useCallback(() => setToast(null), []);
 
   const addItem = useCallback((product: Product) => {
     setItems((prev) => {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
+        setToast(`Mais um ${product.name} no seu carrinho!`);
         return prev.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
+      setToast(`${product.name} adicionado ao carrinho!`);
       return [...prev, { ...product, quantity: 1 }];
     });
+
+    // Auto-clear toast
+    setTimeout(() => setToast(null), 3000);
   }, []);
 
   const removeItem = useCallback((productId: number) => {
@@ -72,7 +82,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice }}
+      value={{ items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice, toast, clearToast }}
     >
       {children}
     </CartContext.Provider>

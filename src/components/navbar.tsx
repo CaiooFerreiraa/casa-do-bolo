@@ -6,7 +6,7 @@ import { ShoppingBag, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export function Navbar() {
-  const { totalItems } = useCart();
+  const { totalItems, toast, clearToast } = useCart();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -48,11 +48,35 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-xl flex flex-col p-8">
+      {/* Global Cart Toast */}
+      {toast && (
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] bg-secondary text-secondary-foreground px-6 py-4 rounded-2xl shadow-2xl font-medium animate-in slide-in-from-bottom-5 fade-in duration-300 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+            <ShoppingBag className="w-4 h-4" />
+          </div>
+          <span>{toast}</span>
+          <button onClick={clearToast} className="ml-2 opacity-50 hover:opacity-100 transition-opacity">
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
+      {/* Mobile Menu Drawer */}
+      <div
+        className={`fixed inset-0 z-[100] transition-all duration-500 ${mobileOpen ? "visible" : "invisible"}`}
+      >
+        {/* Backdrop overlay */}
+        <div
+          className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-500 ${mobileOpen ? "opacity-100" : "opacity-0"}`}
+          onClick={() => setMobileOpen(false)}
+        />
+
+        {/* Sidebar content */}
+        <div
+          className={`absolute top-0 right-0 h-full w-[80%] bg-background p-8 shadow-2xl transition-transform duration-500 ease-out border-l border-border/40 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
+        >
           <div className="flex justify-between items-center mb-16">
-            <span className="text-3xl title text-primary">Casa do Bolo</span>
+            <span className="text-2xl title text-primary">Casa do Bolo</span>
             <button
               className="p-3 hover:bg-muted/50 rounded-full transition-colors cursor-pointer"
               onClick={() => setMobileOpen(false)}
@@ -61,7 +85,7 @@ export function Navbar() {
               <X className="w-6 h-6 text-foreground" />
             </button>
           </div>
-          <nav className="flex flex-col gap-8">
+          <nav className="flex flex-col gap-6">
             {[
               { href: "/", label: "Início" },
               { href: "/cardapio", label: "Cardápio" },
@@ -70,15 +94,19 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-5xl title text-foreground hover:text-primary transition-colors"
+                className="text-4xl title text-foreground hover:text-primary transition-colors flex items-center justify-between"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
+
+          <div className="mt-auto pt-16 border-t border-border/40 text-muted-foreground">
+            <p className="text-sm font-light leading-relaxed">Bolos feitos com afeto para momentos especiais.</p>
+          </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
